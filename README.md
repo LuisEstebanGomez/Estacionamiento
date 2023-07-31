@@ -33,9 +33,13 @@ Crea una base de datos en MySQL para la aplicación.
 Abre el archivo application.properties ubicado en src/main/resources y modifica la configuración de la base de datos con tus credenciales:
 
 spring.datasource.url=jdbc:mysql://localhost:3306/user?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+
 spring.datasource.username=root
+
 spring.datasource.password=
+
 spring.main.banner-mode=off
+
 spring.jpa.hibernate.ddl-auto=update
 
 Ejecuta la aplicación:
