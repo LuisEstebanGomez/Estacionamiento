@@ -12,7 +12,7 @@ Antes de comenzar con la instalación, asegúrate de tener instalados los siguie
 - Java Development Kit (JDK) 17
 - Eclipse IDE
 - Maven 3.x
-- MySQL Server (asegúrate de tener una base de datos creada para el proyecto)
+- MySQL Server (asegúrate de tener una base de datos creada para el proyecto) en mi caso use MySql workbench
 
 ## Instalación
 _______________
@@ -29,7 +29,7 @@ Haz clic en "Browse" (Examinar) y navega hasta el directorio del proyecto "estac
 Configuración de la base de datos:
 ___________________________________
 
-Crea una base de datos en MySQL para la aplicación (puedes utilizar PhpMyAdmin o cualquier otra herramienta).
+Crea una base de datos en MySQL para la aplicación.
 Abre el archivo application.properties ubicado en src/main/resources y modifica la configuración de la base de datos con tus credenciales:
 
 spring.datasource.url=jdbc:mysql://localhost:3306/user?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
