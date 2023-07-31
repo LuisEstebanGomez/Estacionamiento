@@ -1,0 +1,129 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.container label {
+  color:#0C1340 ;
+  font-weight: bold;
+}
+
+.item.container{
+  color: #0C1340;
+  margin: auto;
+}
+
+.container a {
+  font-style: none;
+  color:#414579 ;
+  font-weight: bold;
+}
+
+.container h5 {
+  font-style: none;
+  color:#70709C ;
+  font-weight: lighter;
+}
+
+.custom-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px; 
+}
+  
+.custom-button-danger {
+    background-color: #dc3545; 
+    color: white; 
+}
+ 
+.custom-button-success {
+    background-color: #28a745; 
+    color: white; 
+}
+
+.navbar {
+    padding: 10px 0;    
+}
+
+.bg-custom {
+    background-color:aliceblue 
+}
+
+.navbar-nav .nav-link {
+    margin: 5px; 
+}
+ 
+.container .row.justify-content-md-center {
+    margin-top: 20px; 
+    margin-bottom: 300px;
+}
+  
+.col-md-6.border {
+    padding: 20px; 
+}
+ 
+.custom-button {
+    margin-top: 10px; 
+}
+
+.container h4.custom-h4 {
+    font-weight: bold;
+    font-size: 24px; 
+    color: #0C1340; 
+    text-align: center;
+    margin: 15px; 
+}
+
+.navbar .nav-item.nav-link {
+    font-size: 16px; 
+    font-weight: bold; 
+    color: #0C1340; 
+    border-bottom:2px solid aliceblue ;
+}
+
+.navbar .nav-item.nav-link:hover {
+    font-size: 16px; 
+    font-weight: bold; 
+    border-bottom:2px solid #37B751;
+}
+
+
+.items-container {
+    display: flex; 
+    flex-wrap: wrap;
+}
+  
+
+.item {
+    text-align: center;
+    width: 20%;
+    margin: 5px; 
+    padding: 10px;
+    border: 1px solid #DBDBDB; 
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0; 
+}
+
+app-root {
+    flex: 1;
+}
+  
+footer {
+    flex-shrink: 0;
+    background-color: #f8f9fa; 
+    padding: 10px 0; 
+    text-align: center; 
+    color: #0C1340; 
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}

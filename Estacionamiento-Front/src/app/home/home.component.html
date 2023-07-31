@@ -1,0 +1,63 @@
+<br>
+<div class="container">
+    <!-- BARRA DE NAVEGACION -->
+    <nav class="navbar navbar-expand navbar-light bg-light" >
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="home">INICIO</a>
+            <a class="nav-item nav-link" href="account">CUENTA</a>
+            <a class="nav-item nav-link" href="moviment">MOVIMIENTOS</a>
+            <a class="nav-item nav-link" href="vehicles">VEHICULOS</a>
+          </div>
+        </div> 
+        <div class="row">
+            <div class="col-md-12 text-right">
+              <a class="nav-item nav-link" href="#" (click)="logout()">CERRAR SESION</a>
+            </div>
+          </div>
+      </nav>
+    <div class="row">
+        <div class="col-md-12">   
+          <div class="user-info">
+            <h5>Usuario: {{ phoneNumber }} - Saldo disponible: $ {{ saldo }}</h5>      
+          </div>
+        </div>
+      </div>
+    <br>
+    <br>
+    <div class="row justify-content-md-center">
+      <div class="col-md-6 border">
+        <h4 class="custom-h4">INICIAR ESTACIONAMIENTO</h4>
+        
+        <small><label for="password">Mis vehiculos:</label></small>
+        <select [(ngModel)]="seleccionado" class="form-select form-select-lg mb-3 " aria-label=".form-select-lg example"
+          id="vehiculos">
+          <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.patente">{{vehiculo.patente}}</option>
+      </select>
+        <div *ngIf="activo; else other">
+          <div class="alert alert-info custom-button my-3" role="alert">
+            Tiene un estacionamiento activo del Dominio: <b>{{dominio}}</b>
+          </div>
+          <button type="button" class="custom-button custom-button-danger btn-block my-3"
+            (click)="finalizarEstacionamiento()">
+            Finalizar
+          </button>
+        </div>
+        <div class="alert alert-info custom-button my-3" *ngIf="eligio" role="alert">
+          No puede iniciar un estacionamiento
+        </div>
+      </div> 
+      <ng-template #other>
+        <p></p>
+        <button type="button" class="custom-button custom-button-success btn-block my-3"
+          (click)="iniciarEstacionamiento()">
+          Iniciar
+        </button>
+      </ng-template>
+    </div>
+    <footer class="row justify-content-md-center" style="border-top: 1px solid #0C1340;">
+      <div class="col-md-4">
+        <p>© 2023 Mi Estacionamiento. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
