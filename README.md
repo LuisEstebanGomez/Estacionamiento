@@ -50,3 +50,35 @@ Haz clic derecho en el archivo y selecciona "Run As" (Ejecutar como) -> "Java Ap
 La aplicación ahora estará en funcionamiento en http://localhost:8080.
 
 La carpeta "Collections" tiene collections para Postman para realizar diferentes pruebas.
+
+# Estacionamiento - Front-end (Angular)
+
+Este es el repositorio del front-end de la aplicación "Estacionamiento". Esta parte del proyecto está desarrollada utilizando Angular y proporciona una interfaz de usuario para interactuar con el sistema de estacionamiento.
+
+## Requisitos previos
+
+Antes de comenzar con la instalación y ejecución del front-end, asegúrate de tener instalados los siguientes componentes en tu entorno de desarrollo:
+
+- Node.js y npm (Node Package Manager)
+- Angular CLI (Command Line Interface)
+
+## Instalación
+
+Clona este repositorio en tu máquina local:
+
+Abre una terminal y navega hasta el directorio del proyecto "estacionamiento-front":
+
+cd estacionamiento-front
+
+Instala las dependencias necesarias utilizando npm:
+
+npm install
+
+Ejecución
+Una vez que las dependencias se hayan instalado correctamente, puedes ejecutar el servidor de desarrollo de Angular con el siguiente comando:
+
+ng serve
+
+La aplicación estará disponible en http://localhost:4200/. Abre tu navegador y accede a esta dirección para ver la interfaz de usuario.
+
+
