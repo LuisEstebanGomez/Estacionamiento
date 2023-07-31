@@ -1,0 +1,283 @@
+{
+	"info": {
+		"_postman_id": "a8b1090a-b6ff-4617-974c-5c8d14f6b85a",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24510330"
+	},
+	"item": [
+		{
+			"name": "CrearUsuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phoneNumber\": \"1234567890\",\r\n    \"email\": \"ML@example.com\",\r\n    \"password\": \"12345\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TieneEstacionamientoPorNumeroDeTelefono",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkwOTQyMTUzLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.jQf7pjGwhSLpWoN12cU9CUs-9Sw2oZnZ9uEouI0eRnXaLNW34qEASO5Ygjsl_ZM5we3Aa4PLEC0RswpUPEJH7w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/1234567890/estacionamientoActivo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1234567890",
+						"estacionamientoActivo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AgregarUnVehiculo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkxMDIyNDYxLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.eccwHztTdxAFK_R4eih3KF0ZJVE7DGfkFxy_eIyvenxIgcgVVzWwH0MziFVxcv0mC5fpfwlPz67XffHI6aMH7Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patente\": \"AAA111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/1234567890/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1234567890",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListarVehiculosDeUnUsuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkxMDcyMjIzLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.zZPBw6G_nXIOvL7s26s_YiCrkK59k54vDN-IFBFeuwmGHEiQrkTPkpolQQqPqEXYttJEQJxrsDLpH5OqpLlcLw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/1234567890/ListVehicles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1234567890",
+						"ListVehicles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListarMovimientosDeUnUsuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkxMDcyMjIzLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.zZPBw6G_nXIOvL7s26s_YiCrkK59k54vDN-IFBFeuwmGHEiQrkTPkpolQQqPqEXYttJEQJxrsDLpH5OqpLlcLw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/1234567890/movimientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1234567890",
+						"movimientos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerSaldoDeUnUsuario",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODk5IiwiZXhwIjoxNjkwNTkxMDMwLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTkifQ.SvNOqbqbwyQlnjhmhbaV_N881wIHwbl2cSFN04f7_RIcBmygjjBc3K3tioaBDyEn6F3IKh2-X8GsUwHGvRAvRg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"monto\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CargarSaldo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkwOTQyMTUzLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.jQf7pjGwhSLpWoN12cU9CUs-9Sw2oZnZ9uEouI0eRnXaLNW34qEASO5Ygjsl_ZM5we3Aa4PLEC0RswpUPEJH7w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "10",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/1234567890/sumar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1234567890",
+						"sumar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phoneNumber\": \"1234567890\",\r\n    \"password\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

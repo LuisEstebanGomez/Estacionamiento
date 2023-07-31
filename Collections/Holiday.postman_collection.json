@@ -1,0 +1,48 @@
+{
+	"info": {
+		"_postman_id": "88be0513-ad72-48cb-ace5-944d3154e1f9",
+		"name": "Holiday",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24510330"
+	},
+	"item": [
+		{
+			"name": "AgregarFeriado",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkxMDIyNDYxLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.eccwHztTdxAFK_R4eih3KF0ZJVE7DGfkFxy_eIyvenxIgcgVVzWwH0MziFVxcv0mC5fpfwlPz67XffHI6aMH7Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"date\": \"2023-07-30\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/holidays",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"holidays"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
