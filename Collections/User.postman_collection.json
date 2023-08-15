@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"phoneNumber\": \"1234567890\",\r\n    \"email\": \"ML@example.com\",\r\n    \"password\": \"12345\"\r\n}\r\n\r\n",
+					"raw": "{\r\n    \"phoneNumber\": \"1234567899\",\r\n    \"email\": \"ML@example.com\",\r\n    \"password\": \"12345\"\r\n}\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -114,7 +114,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkxMDcyMjIzLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.zZPBw6G_nXIOvL7s26s_YiCrkK59k54vDN-IFBFeuwmGHEiQrkTPkpolQQqPqEXYttJEQJxrsDLpH5OqpLlcLw",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkyMTA5MjE4LCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.8p4_4hlKi_4Bl3HUI8m4W8WJsFZpKTF5N4hF1vVAJZgBWJzdfPNicm5fjrkXkKvYJLt_PWHWM6slA93SGj8kWQ",
 							"type": "string"
 						}
 					]
@@ -145,7 +145,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkxMDcyMjIzLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.zZPBw6G_nXIOvL7s26s_YiCrkK59k54vDN-IFBFeuwmGHEiQrkTPkpolQQqPqEXYttJEQJxrsDLpH5OqpLlcLw",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkwOTQyMTUzLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.jQf7pjGwhSLpWoN12cU9CUs-9Sw2oZnZ9uEouI0eRnXaLNW34qEASO5Ygjsl_ZM5we3Aa4PLEC0RswpUPEJH7w",
 							"type": "string"
 						}
 					]
@@ -179,7 +179,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODk5IiwiZXhwIjoxNjkwNTkxMDMwLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTkifQ.SvNOqbqbwyQlnjhmhbaV_N881wIHwbl2cSFN04f7_RIcBmygjjBc3K3tioaBDyEn6F3IKh2-X8GsUwHGvRAvRg",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkxMDcyMjIzLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.zZPBw6G_nXIOvL7s26s_YiCrkK59k54vDN-IFBFeuwmGHEiQrkTPkpolQQqPqEXYttJEQJxrsDLpH5OqpLlcLw",
 							"type": "string"
 						}
 					]
@@ -196,7 +196,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/users/list",
+					"raw": "http://localhost:8080/users/1234567890/saldo",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -204,7 +204,8 @@
 					"port": "8080",
 					"path": [
 						"users",
-						"list"
+						"1234567890",
+						"saldo"
 					]
 				}
 			},
@@ -218,7 +219,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkwOTQyMTUzLCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.jQf7pjGwhSLpWoN12cU9CUs-9Sw2oZnZ9uEouI0eRnXaLNW34qEASO5Ygjsl_ZM5we3Aa4PLEC0RswpUPEJH7w",
+							"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiZXhwIjoxNjkyMTA4Mjg5LCJQaG9uZU51bWJlciI6IjEyMzQ1Njc4OTAifQ.KEr_UiH5KxB3RSB7ArEGNO7UmYuOTH5z2iT09JMwKnTvDxXv2auz6bMrLXmTja3v-SRZgCaikkJg4Qr9Uhnybg",
 							"type": "string"
 						}
 					]
@@ -227,7 +228,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "10",
+					"raw": "102",
 					"options": {
 						"raw": {
 							"language": "json"
