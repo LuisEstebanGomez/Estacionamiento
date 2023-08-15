@@ -1,0 +1,37 @@
+<br>
+<div class="container">
+ 
+
+  <app-navbar></app-navbar>
+
+  <div class="row justify-content-md-center">
+    <div class="col-md-6 border">
+      <h4 class="custom-h4">CARGAR SALDO</h4>
+        <br>
+      <h5>Saldo disponible: ${{ saldo }}</h5>
+      <form (ngSubmit)="cargarSaldo()">
+        <div class="row">
+          <div class="col-md-12">
+            <small><label for="password">Monto:</label></small>
+            <input style="height: 40px;" type="number" id="monto" placeholder="" [(ngModel)]="monto" name="monto" class="form-control mb-3"
+              required="" placeholder="Ingrese un monto">
+          </div>
+          <br>
+          <br>
+          <div class="col-md-12">
+            <input class="custom-button custom-button-success btn-block my-3" type="submit" value="CARGAR">
+          </div>
+        </div>
+      </form>
+      <br>
+      <div *ngIf="error" class="close alert alert-danger" role="alert">
+        Atención el monto mínimo es $100
+      </div>
+    </div>
+  </div>
+  <footer class="row justify-content-md-center" style="border-top: 1px solid #0C1340;">
+    <div class="col-md-4">     
+      <p>© 2023 Mi Estacionamiento. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</div>

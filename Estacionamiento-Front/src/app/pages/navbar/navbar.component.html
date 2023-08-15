@@ -1,0 +1,25 @@
+  <!-- BARRA DE NAVEGACION -->
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" (click)="navigateToHome()">INICIO</a>
+        <a class="nav-item nav-link" (click)="navigateToAccount()">CUENTA</a>
+        <a class="nav-item nav-link" (click)="navigateToMovimientos()">MOVIMIENTOS</a>
+        <a class="nav-item nav-link" (click)="navigateToVehicles()">VEHICULOS</a>
+      </div>
+    </div> 
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <a class="nav-item nav-link" href="#" (click)="logout()" >CERRAR SESION</a>
+      </div>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col-md-12">   
+      <div class="user-info">
+        <h5>Usuario: {{ phoneNumber }} </h5>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>

@@ -1,0 +1,32 @@
+<br>
+<div class="container">
+  
+  <app-navbar></app-navbar>
+  
+    <div class="row justify-content-md-center">  
+        <div class="col-md-6 border"  >    
+            <h4 class="custom-h4">MOVIMIENTOS</h4>       
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                  <th>Fecha-Hora</th>
+                  <th>Monto</th>
+                  <th>Tipo</th>
+                  <th>Saldo</th>
+                </tr>
+                </thead>
+                <tr *ngFor="let movimiento of movimientos">
+                  <td>{{ formatearFecha(movimiento.fecha) }}</td>
+                  <td>{{ movimiento.monto }}</td>
+                  <td>{{ movimiento.tipo }}</td>
+                  <td>{{ movimiento.saldoResultante }}</td>
+                </tr>
+              </table>    
+    </div>
+    </div>  
+    <footer class="row justify-content-md-center" style="border-top: 1px solid #0C1340;">
+      <div class="col-md-4">        
+        <p>© 2023 Mi Estacionamiento. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+</div>      
