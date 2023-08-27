@@ -5,6 +5,8 @@ import ar.edu.unlp.estacionamiento.repositories.HolidayRepository;
 import ar.edu.unlp.estacionamiento.security.dto.ApiResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,10 @@ public class HolidayController {
     public HolidayController(HolidayRepository holidayRepository) {
         this.holidayRepository = holidayRepository;
     }
+    
+    @Autowired
+	MessageSource msg;
+
   
     @GetMapping
     public ResponseEntity<List<HolidayModel>> getAllHolidays() {
@@ -32,7 +38,7 @@ public class HolidayController {
     public ResponseEntity<?> getHolidayById(@PathVariable Long id) {
         HolidayModel holiday = holidayRepository.findById(id).orElse(null);
         if (holiday == null) {
-            return new ResponseEntity<>(new ApiResponse(false, "Feriado no encontrado"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("holiday.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(holiday, HttpStatus.OK);
     }
@@ -41,11 +47,11 @@ public class HolidayController {
     public ResponseEntity<ApiResponse> createHoliday(@RequestBody HolidayModel holiday) {
     	// Verificar si el feriado ya existe en la base de datos
         if (holidayRepository.existsByDate(holiday.getDate())) {
-            return new ResponseEntity<>(new ApiResponse(false, "El feriado ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("holiday.exist", null, LocaleContextHolder.getLocale())), HttpStatus.BAD_REQUEST);
         }
         
         HolidayModel newHoliday = holidayRepository.save(holiday);
-        return new ResponseEntity<>(new ApiResponse(true, "Feriado creado"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ApiResponse(true, msg.getMessage("holiday.create", null, LocaleContextHolder.getLocale())), HttpStatus.CREATED);
     }
    
 
@@ -53,22 +59,22 @@ public class HolidayController {
     public ResponseEntity<ApiResponse> updateHoliday(@PathVariable Long id, @RequestBody HolidayModel holidayDetails) {
         HolidayModel holiday = holidayRepository.findById(id).orElse(null);
         if (holiday == null) {
-            return new ResponseEntity<>(new ApiResponse(false, "Feriado no encontrado"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("holiday.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
         }
         holiday.setDate(holidayDetails.getDate());
 
         HolidayModel updatedHoliday = holidayRepository.save(holiday);
-        return new ResponseEntity<>(new ApiResponse(true, "Feriado Actualizado"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(true, msg.getMessage("holiday.update", null, LocaleContextHolder.getLocale())), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteHoliday(@PathVariable Long id) {
         HolidayModel holiday = holidayRepository.findById(id).orElse(null);
         if (holiday == null) {
-            return new ResponseEntity<>(new ApiResponse(false, "Feriado no encontrado"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("holiday.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
         }
         holidayRepository.delete(holiday);
-        return new ResponseEntity<>(new ApiResponse(true, "Feriado eliminado"), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(new ApiResponse(true, msg.getMessage("holiday.delete", null, LocaleContextHolder.getLocale())), HttpStatus.NO_CONTENT);
     }
 
 }

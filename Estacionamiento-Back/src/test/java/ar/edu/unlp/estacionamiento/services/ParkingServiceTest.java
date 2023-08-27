@@ -71,9 +71,9 @@ public class ParkingServiceTest {
         when(currentDateTime.getHour()).thenReturn(12); //hora  rango
         when(holidayService.getAllHolidays()).thenReturn(feriados);
         when(estacionamientoRepository.save(any(ParkingModel.class))).thenReturn(new ParkingModel());
-
+        StringBuilder msg = new StringBuilder();
         //inicia un estacionamiento con todos los valores correctos
-        ParkingModel result = parkingService.iniciarEstacionamiento("1234567890", "ABC123", currentDateTime,"");
+        ParkingModel result = parkingService.iniciarEstacionamiento("1234567890", "ABC123", currentDateTime,msg);
 
         assertNotNull(result);// Verifica que se haya iniciado el estacionamiento
     }
@@ -98,8 +98,8 @@ public class ParkingServiceTest {
         when(currentDateTime.getHour()).thenReturn(12);
         when(holidayService.getAllHolidays()).thenReturn(feriados);
         when(estacionamientoRepository.save(any(ParkingModel.class))).thenReturn(new ParkingModel());
-
-        ParkingModel result = parkingService.iniciarEstacionamiento("1234567890", "ABC123", currentDateTime,"");
+        StringBuilder msg = new StringBuilder();
+        ParkingModel result = parkingService.iniciarEstacionamiento("1234567890", "ABC123", currentDateTime,msg);
         assertNull(result); // Verifica que no se haya iniciado el estacionamiento
 
     }
@@ -125,9 +125,9 @@ public class ParkingServiceTest {
         when(currentDateTime.getHour()).thenReturn(12);
         when(holidayService.getAllHolidays()).thenReturn(feriados);
         when(estacionamientoRepository.save(any(ParkingModel.class))).thenReturn(new ParkingModel());
-
-  
-        ParkingModel result = parkingService.iniciarEstacionamiento("1234567890", "ABC123", currentDateTime,"");
+        StringBuilder msg = new StringBuilder();
+        
+        ParkingModel result = parkingService.iniciarEstacionamiento("1234567890", "ABC123", currentDateTime,msg);
 
         assertNull(result); // Verifica que no se haya iniciado el estacionamiento
         
@@ -154,9 +154,9 @@ public class ParkingServiceTest {
         when(holidayService.getAllHolidays()).thenReturn(feriados);
         when(estacionamientoRepository.save(any(ParkingModel.class))).thenReturn(new ParkingModel());
         when(currentDateTime.getHour()).thenReturn(1); //UNA HORA QUE ESTE FUERA DEL RANGO
-
-        ParkingModel result = parkingService.iniciarEstacionamiento("1234567890", "ABC123", currentDateTime,"");
-       
+        StringBuilder msg = new StringBuilder();
+        ParkingModel result = parkingService.iniciarEstacionamiento("1234567890", "ABC123", currentDateTime,msg);
+      
         assertNull(result); // Verifica que no se haya iniciado el estacionamiento
        
     }

@@ -46,7 +46,7 @@ public class UserService {
         }
     }
 
-    public UserModel addVehicleToUser(String phoneNumber, VehicleModel vehicle, boolean ok, String msg) {
+    public UserModel addVehicleToUser(String phoneNumber, VehicleModel vehicle, boolean ok, StringBuilder response) {
 	    UserModel user = getUserByPhoneNumber(phoneNumber);
 
 	    String patente = vehicle.getPatente();  
@@ -62,15 +62,19 @@ public class UserService {
         	            user.getVehiculos().add(vehicle);
         	            userRepository.save(user);
         	            ok=true;
-        	            msg="Vehiculo Agregado Exitosamente";
+        	            response.append("patent.create");
         		}else {
-        			msg="El vehiculo ya se encuentra registrado";
+        			response.append("patent.existPatent");
         		}
+        	}
+        	else {
+        			response.append("patent.notValid");
+        	}
         }else {
-        	msg="El usuario no se encuentra en el sistema";
+        	response.append("user.notFound");
         	return null;
         }
-        }
+    
 		return user;
     }
  

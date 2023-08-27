@@ -116,7 +116,7 @@ public class UserServiceTest {
 	        
 
 	        boolean ok = false;
-	        String msg = "";
+	        StringBuilder msg = new StringBuilder();
 	        UserModel result = userService.addVehicleToUser("123456789", vehicle, ok, msg);
 
 	        assertEquals(1, result.getVehiculos().size());

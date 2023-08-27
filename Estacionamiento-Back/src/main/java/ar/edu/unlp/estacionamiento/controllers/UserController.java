@@ -1,7 +1,8 @@
 package ar.edu.unlp.estacionamiento.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
@@ -42,14 +43,16 @@ public class UserController {
 	private AccountService ctacteService;
 	@Autowired
 	private ParkingService parkingService;
-	
+    @Autowired
+	MessageSource msg;
+    
 	@PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserModel user) {
 		UserModel aux = userService.getUserByPhoneNumber(user.getPhoneNumber());
 		if (aux != null && aux.getPassword().equals(user.getPassword())) {
-            return new ResponseEntity<>(new ApiResponse(true, "Inicio de sesión exitoso"), HttpStatus.OK);
+            return new ResponseEntity<>(new ApiResponse(true, msg.getMessage("user.validLogin", null, LocaleContextHolder.getLocale())), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(new ApiResponse(false, "Inicio de sesión fallido"), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("user.notValidLogin", null, LocaleContextHolder.getLocale())), HttpStatus.UNAUTHORIZED);
         }
     }
 	
@@ -60,12 +63,12 @@ public class UserController {
         if (usuarioAux == null) {
             UserModel createdUser = userService.crearUsuario(user);
             if (createdUser != null) {
-                return new ResponseEntity<>(new ApiResponse(true, "Usuario creado exitosamente"), HttpStatus.OK);
+                return new ResponseEntity<>(new ApiResponse(true, msg.getMessage("user.create", null, LocaleContextHolder.getLocale())), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(new ApiResponse(false, "Error: Usuario no pudo ser creado"), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("user.notCreate", null, LocaleContextHolder.getLocale())), HttpStatus.BAD_REQUEST);
             }
         } else {
-            return new ResponseEntity<>(new ApiResponse(false, "Error: Usuario ya se encuentra registrado"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse(false,msg.getMessage("user.existPhone", null, LocaleContextHolder.getLocale())), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -73,7 +76,7 @@ public class UserController {
 	public ResponseEntity<?> getAllUsers() {
         List<UserModel> users = userService.getAllUsers();
         if (users.isEmpty()) {
-            return new ResponseEntity<>(new ApiResponse(false, "No se encontraron usuarios"), HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("user.notValidList", null, LocaleContextHolder.getLocale())), HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(users, HttpStatus.OK);
         }
@@ -85,7 +88,7 @@ public class UserController {
             UserModel user = userService.getUserByPhoneNumber(phoneNumber);
 
             if (user == null) {
-                return new ResponseEntity<>(new ApiResponse(false, "Usuario no encontrado"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("user.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
             } else {
                 return new ResponseEntity<>(user, HttpStatus.OK);
             }
@@ -112,19 +115,19 @@ public class UserController {
 //    
     @PostMapping("/{phoneNumber}/add") //CORREJIR METODO
     public ResponseEntity<?> agregarVehiculo(@PathVariable("phoneNumber") String phoneNumber, @RequestBody VehicleModel vehiculo) { 
-    	String msg="";
+    	StringBuilder response = new StringBuilder();
     	boolean ok=false;
     	UserModel usuario = userService.getUserByPhoneNumber(phoneNumber);
     	if(usuario != null) {
-    		userService.addVehicleToUser(phoneNumber,vehiculo,ok,msg);
+    		userService.addVehicleToUser(phoneNumber,vehiculo,ok,response);
     		if(ok) {
-    			return new ResponseEntity<>(new ApiResponse(true,msg),HttpStatus.OK);
+    			return new ResponseEntity<>(new ApiResponse(true, msg.getMessage(response.toString(), null, LocaleContextHolder.getLocale())),HttpStatus.OK);
     		}else {
-    			return new ResponseEntity<>(new ApiResponse(false,msg),HttpStatus.NOT_FOUND);
+    			return new ResponseEntity<>(new ApiResponse(false,msg.getMessage(response.toString(), null, LocaleContextHolder.getLocale())),HttpStatus.NOT_FOUND);
     		}
     	}
     	else {
-    		return new ResponseEntity<>(new ApiResponse(false,msg),HttpStatus.NOT_FOUND);
+    		return new ResponseEntity<>(new ApiResponse(false,msg.getMessage(response.toString(), null, LocaleContextHolder.getLocale())),HttpStatus.NOT_FOUND);
     	}
     } 
     
@@ -144,7 +147,7 @@ public class UserController {
         List<VehicleModel> vehicles = userService.getUserVehicles(phoneNumber);
 
         if (vehicles.isEmpty()) {
-            return new ResponseEntity<>(new ApiResponse(false, "No se encontraron vehículos"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("patent.notList", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(vehicles, HttpStatus.OK);
         }
@@ -156,12 +159,12 @@ public class UserController {
         if (cuentaCorriente != null) {
             List<MovementModel> movimientos = ctacteService.getMoviments(cuentaCorriente.getId());
             if (movimientos.isEmpty()) {
-                return new ResponseEntity<>(new ApiResponse(false, "No se encontraron movimientos de cuenta"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("movement.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
             } else {
                 return new ResponseEntity<>( movimientos, HttpStatus.OK);
             }
         } else {
-            return new ResponseEntity<>(new ApiResponse(false, "Cuenta corriente no encontrada"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("Account.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
         }
     }
     
@@ -171,7 +174,7 @@ public class UserController {
         if (cuentaCorriente != null) {
             return new ResponseEntity<>(cuentaCorriente, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(new ApiResponse(false, "Cuenta corriente no encontrada"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("Account.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
         }
     }
     
@@ -181,7 +184,7 @@ public class UserController {
         if (cuentaCorriente != null) {
             return new ResponseEntity<>(cuentaCorriente.getSaldo(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(new ApiResponse(false, "Cuenta corriente no encontrada"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("Account.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
         }
     }
          
@@ -191,12 +194,12 @@ public class UserController {
     public ResponseEntity<ApiResponse> sumarSaldoCuentaCorriente(@PathVariable("phoneNumber") String phoneNumber, @RequestBody double monto) {
         UserModel usuario = userService.getUserByPhoneNumber(phoneNumber);
         if ((usuario == null) || (monto < 100)) {
-            return new ResponseEntity<>(new ApiResponse(false, "No se pudo realizar la carga - verificar usuario y monto (mínimo $100)"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("Account.error", null, LocaleContextHolder.getLocale())), HttpStatus.BAD_REQUEST);
         }
 
         ctacteService.cargarCuentaCorriente(usuario.getAccount().getId(), monto, "Ingreso");
-
-        return new ResponseEntity<>(new ApiResponse(true, "Carga realizada exitosamente"), HttpStatus.OK);
+       
+        return new ResponseEntity<>(new ApiResponse(true, msg.getMessage("Account.balance.update", null, LocaleContextHolder.getLocale())), HttpStatus.OK);
     }
 
     //metodo para pruebas nomas
@@ -212,14 +215,14 @@ public class UserController {
    }
 
    
-  
     @GetMapping("/{phoneNumbe}/estacionamientoActivo") //CORREJIR METODO
     public ResponseEntity<?> getParking(@PathVariable String phoneNumbe) {
         ParkingModel estacionamiento = parkingService.getUserParkingA(phoneNumbe);
         if (estacionamiento != null) {
             return new ResponseEntity<>(estacionamiento, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(new ApiResponse(false, "No tiene estacionamiento activo"), HttpStatus.NOT_FOUND);
+        	
+            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("parking.notValid.active", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
         }
     }
    

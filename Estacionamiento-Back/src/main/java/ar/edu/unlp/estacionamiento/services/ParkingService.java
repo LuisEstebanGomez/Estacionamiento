@@ -9,6 +9,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlp.estacionamiento.models.AccountModel;
@@ -18,6 +20,7 @@ import ar.edu.unlp.estacionamiento.models.UserModel;
 import ar.edu.unlp.estacionamiento.models.VehicleModel;
 import ar.edu.unlp.estacionamiento.repositories.IParkingRepository;
 import ar.edu.unlp.estacionamiento.repositories.IUserRepository;
+import ar.edu.unlp.estacionamiento.security.dto.ApiResponse;
 import ch.qos.logback.core.util.Duration;
 
 @Service
@@ -35,9 +38,12 @@ public class ParkingService {
 		@Autowired
 		private HolidayService holidayService;
 		
+		@Autowired
+		MessageSource msg;
 		
-		public ParkingModel iniciarEstacionamiento(String phoneNumber, String patente, LocalDateTime currentDateTime, String response) {
-	    	
+		public ParkingModel iniciarEstacionamiento(String phoneNumber, String patente, LocalDateTime currentDateTime, StringBuilder response) {
+			 
+			
 	    	ParkingModel estacionamient = estacionamientoRepository.findByUserPhoneNumber(phoneNumber);  
 	    	
 	    	UserModel user = userRepository.findByPhoneNumber(phoneNumber);
@@ -55,7 +61,7 @@ public class ParkingService {
 		    	  
 	            if(!esDiaFeriado(fechaParaComparar)) {
 	            	//SE FIJA QUE EL SALDO DISPONIBLE PUEDA CANCELAR AUNQUESEA 1 H
-		    		if(user.getAccount().getSaldo()>=10) {
+		    		if(user.getAccount().getSaldo()>=1000000) {
 		    			
 			    		// CREA NUEVO ESTACIONAMIENTO
 				        ParkingModel estacionamiento = new ParkingModel();
@@ -63,21 +69,23 @@ public class ParkingService {
 				        estacionamiento.setPatente(patente);
 				        estacionamiento.setHoraInicio(fecha);
 				        estacionamiento.setActivo(true);
-				        
-				        System.out.println("llega a guardarlo");
-			    
+				        		    
 				        return estacionamientoRepository.save(estacionamiento);
 		            
 		    		}else {
-		    			response="No tiene saldo suficiente para operar";
+		     			
+						response.append("parking.notValid.balance");
+
 		    		}
 	            }else {
-	            	response="No se puede operar un dia feriado";         	
+	            	response.append("parking.notValid.workingDays");
+
 	            }  			    		
 	    	}else {
-	    		  response="Esta fuera del rango de horarios operable"; 		
+
+	    		response.append("parking.notValid.hour");
 	    	}
-	    		
+
 	    	return null;    
 	    }
 
