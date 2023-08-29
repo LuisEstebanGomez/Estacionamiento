@@ -3,6 +3,10 @@ package ar.edu.unlp.estacionamiento.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -34,11 +38,17 @@ public class AccountController {
 	 
 	 @Autowired
 	 MessageSource msg;
+	 
+	 private static final Logger logger = LogManager.getLogger(AccountController.class);
+	 public static final Marker APP = MarkerManager.getMarker("APP");
 
 	 @GetMapping("/{phoneNumber}/movements")
 	    public ResponseEntity<?> getMovimientos(@PathVariable String phoneNumber) {
+		 	logger.info(APP, "Obteniendo movimientos para el número de teléfono: {}", phoneNumber);
+		
 	        UserModel user = userRepository.findByPhoneNumber(phoneNumber);
 	        if (user == null) {
+	        	logger.warn(APP, "Usuario no encontrado para el número de teléfono: {}", phoneNumber);
 	            return new ResponseEntity<>(new ApiResponse(false, msg.getMessage("user.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.NOT_FOUND);
 	        }
 	        
@@ -46,9 +56,10 @@ public class AccountController {
 	        List<MovementModel> movimientos = ctaCteService.getMovimientosByCtaCteId(id);
 	        
 	        if (movimientos.isEmpty()) {
+	        	logger.info(APP, "No se encontraron movimientos para el número de teléfono: {}", phoneNumber);
 	            return new ResponseEntity<>(new ApiResponse(true, msg.getMessage("movement.notFound", null, LocaleContextHolder.getLocale())), HttpStatus.OK);
 	        }
-	        
+	        logger.info(APP, "Se encontraron movimientos para el número de teléfono: {}", phoneNumber);
 	        return new ResponseEntity<>(movimientos, HttpStatus.OK);
 	    }
 }

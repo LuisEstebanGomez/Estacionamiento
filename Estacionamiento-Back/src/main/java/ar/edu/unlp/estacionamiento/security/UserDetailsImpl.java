@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ar.edu.unlp.estacionamiento.models.UserModel;
 import lombok.AllArgsConstructor;
 
-//@AllArgsConstructor ver de agregar jar de loombok
 public class UserDetailsImpl implements UserDetails {
 
 	private final UserModel user;

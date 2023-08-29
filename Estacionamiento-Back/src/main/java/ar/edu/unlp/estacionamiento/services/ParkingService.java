@@ -83,7 +83,7 @@ public class ParkingService {
 	            }  			    		
 	    	}else {
 
-	    		response.append("parking.notValid.hour");
+	    		response.append("parking.notValid");
 	    	}
 
 	    	return null;    
@@ -96,9 +96,9 @@ public class ParkingService {
 	    	ParkingModel estacionamiento = estacionamientoRepository.findByUserPhoneNumber(phoneNumber);  	
 	
 			if(estacionamiento!=null) {
-				System.out.println("entra");
+			
 				if(estacionamiento.isActivo()) {
-					System.out.println("entra2");
+				
 			        LocalDateTime horaInicio = estacionamiento.getHoraInicio();
 			        LocalDateTime horaFin = currentDateTime.plusSeconds(0);
 		

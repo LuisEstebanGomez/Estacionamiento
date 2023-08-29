@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.1.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> 
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>estacionamiento</artifactId>
@@ -83,13 +83,24 @@
 	 <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
-        <version>4.0.1</version> <!-- La versión puede ser diferente según tu proyecto -->
+        <version>4.0.1</version> 
         <scope>provided</scope>
     </dependency>
     <dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-security</artifactId>
 	</dependency>
+	
+	<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.20.0</version>
+  </dependency>
+  <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.20.0</version>
+  </dependency>
 		
 	</dependencies>
 
@@ -102,7 +113,7 @@
 			<plugin>
 		    <groupId>org.jacoco</groupId>
 		    <artifactId>jacoco-maven-plugin</artifactId>
-		    <version>0.7.7.201606060606</version>
+		    <version>0.8.10</version>
 		    <executions>
 		        <execution>
 		            <goals>

@@ -78,9 +78,6 @@ public class UserService {
 		return user;
     }
  
-
-
-
 	public UserModel agregarCuentaCorriente(String phoneNumber, AccountModel cuentaCorriente) {
 		UserModel user = getUserByPhoneNumber(phoneNumber);
 		if(user != null) {
@@ -122,7 +119,5 @@ public class UserService {
 	    }
 	    return null;
 	}
-
-	
 	
 }

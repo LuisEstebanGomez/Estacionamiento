@@ -95,7 +95,5 @@ public class UserModel  {
 	    account.setUser(this);
 		
 	}
-
-
 	
 }

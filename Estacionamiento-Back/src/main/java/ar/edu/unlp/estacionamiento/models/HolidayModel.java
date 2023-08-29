@@ -28,7 +28,6 @@ public class HolidayModel {
 		
 	}
 	
-
     public Long getId() {
         return id;
     }

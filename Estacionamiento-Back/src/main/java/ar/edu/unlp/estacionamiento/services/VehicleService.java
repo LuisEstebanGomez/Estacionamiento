@@ -26,7 +26,7 @@ public class VehicleService {
 	
 	 public Optional<VehicleModel> getVehicleById(Long id) {
 	        return vehiculoRepository.findById(id);
-	    }
+	}
 
 
 	public boolean existePatente(String patente) {
