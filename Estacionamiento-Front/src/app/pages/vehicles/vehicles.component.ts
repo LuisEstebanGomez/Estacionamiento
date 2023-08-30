@@ -4,7 +4,6 @@ import { VehicleService } from '../../service/vehicle.service';
 import { LoginService } from '../../service/login.service';
 import { UserService } from '../../service/user.service';
 
-
 @Component({
   selector: 'app-vehicles',
   templateUrl: './vehicles.component.html',
@@ -19,7 +18,7 @@ export class VehiclesComponent implements OnInit{
   displayedColumns: string[] = ['Patente'];
   saldo: number=0;
   
-  constructor(private router:Router, private vehicleService: VehicleService, private loginService:LoginService, private usuarioService:UserService) {
+  constructor(private router:Router, private vehicleService: VehicleService, private loginService:LoginService, private usuarioService:UserService ) {
 
   }
 
@@ -41,16 +40,24 @@ export class VehiclesComponent implements OnInit{
     );
   }
 
-  agregarVehiculo(){
-    this.patente=this.patente.toUpperCase();
-    if(this.verificarPatente()){ 
-        console.log(this.patente);
-        this.vehicleService.agregarVehiculo(this.phoneNumber,this.patente).subscribe();
-        window.location.reload();
-  }
-    else{
+   agregarVehiculo() {
+    this.patente = this.patente.toUpperCase();
+  
+    if (this.verificarPatente()) {
+      console.log(this.patente);
+      this.vehicleService.agregarVehiculo(this.phoneNumber, this.patente)
+        .subscribe(
+          () => {
+            
+          },
+          error => {
+            this.cargarVehiculos();
+           
+          }
+        );
+    } else {
       this.mensajeError = "LA PATENTE DEBE CUMPLIR EL FORMATO AAA111 O AA111AA";
-      this.me=true;
+      this.me = true;
     }
   }
 
